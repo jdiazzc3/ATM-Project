@@ -19,6 +19,7 @@ public class LoginPage {
     private By emailInput = By.id("input-email");
     private By passwordInput = By.id("input-password");
     private By loginButton = By.xpath("//input[@value='Login']");
+    public By loginFailedMessage = By.cssSelector("#account-register > div.alert.alert-danger.alert-dismissible");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;

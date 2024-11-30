@@ -2,6 +2,7 @@ import com.co.diaz.pages.LoginPage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -11,6 +12,7 @@ import org.testng.annotations.Test;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 public class LoginTest {
     private WebDriver driver;
@@ -39,6 +41,15 @@ public class LoginTest {
 
         // Hacer clic en el botón de login
         loginPage.clickLoginButton();
+        List<WebElement> loginFailedMessage = driver.findElements(loginPage.loginFailedMessage);
+        if (!loginFailedMessage.isEmpty()) {
+            System.out.println("El login ha fallado.");
+            assert false : "El login ha fallado.";
+        }
+        else {
+            System.out.println("El login ha sido exitoso.");
+        }
+
     }
 
     @DataProvider(name = "loginData")

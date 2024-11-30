@@ -2,7 +2,9 @@ import com.co.diaz.pages.RegisterPage;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -11,6 +13,7 @@ import org.testng.annotations.Test;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 public class RegisterTest {
     private WebDriver driver;
@@ -39,6 +42,16 @@ public class RegisterTest {
 
         // Hacer clic en el botón final de "Continue"
         registerPage.clickFinalContinueButton();
+
+        // Verificar que el registro fue exitoso
+        List<WebElement> registerFailedMessage = driver.findElements(registerPage.registerFailedMessage);
+        if (!registerFailedMessage.isEmpty()) {
+            System.out.println("El registro ha fallado.");
+            assert false : "El registro ha fallado.";
+        }
+        else {
+            System.out.println("El registro ha sido exitoso.");
+        }
     }
 
     @DataProvider(name = "registerData")

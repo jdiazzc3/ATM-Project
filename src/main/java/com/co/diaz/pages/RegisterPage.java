@@ -21,6 +21,7 @@ public class RegisterPage {
     private By privacyPolicyCheckbox = By.name("agree");
     private By continueButton = By.cssSelector("input[value='Continue']");
     private By finalContinueButton = By.cssSelector("#content > div > div > a");
+    public By registerFailedMessage = By.xpath("///*[@id=\"account-register\"]/div[1]");
 
     // Constructor
     public RegisterPage(WebDriver driver) {

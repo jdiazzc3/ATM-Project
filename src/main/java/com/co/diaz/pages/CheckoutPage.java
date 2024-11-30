@@ -39,6 +39,10 @@ public class CheckoutPage {
     }
 
     public void addToCart(By addToCartButton, int quantity) {
+        //verificar que no se ingresen números negativos
+        if (quantity < 0) {
+            throw new IllegalArgumentException("La cantidad no puede ser negativa.");
+        }
         for (int i = 0; i < quantity; i++) {
             driver.findElement(addToCartButton).click();
         }
